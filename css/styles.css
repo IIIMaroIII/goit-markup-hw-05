@@ -55,6 +55,11 @@ img {
 
 /* General style */
 
+*:hover,
+*:focus {
+  transition: color var(--duration) var(--timing-function);
+}
+
 .container {
   width: 1200px;
   padding-left: 15px;
@@ -229,11 +234,13 @@ img {
   text-transform: uppercase;
 }
 .hero-button {
+  transition: background-color var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+
   display: block;
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;
-  border-color: var(--accent-color);
   min-width: 200px;
   padding: 10px 32px;
 
@@ -401,6 +408,9 @@ img {
 }
 
 .socials-link {
+  transition: background-color var(--duration) var(--timing-function),
+    fill var(--duration) var(--timing-function);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -459,6 +469,9 @@ img {
 }
 
 .customers-link {
+  transition: border-color var(--duration) var(--timing-function),
+    fill var(--duration) var(--timing-function);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -603,6 +616,67 @@ img {
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity var(--duration) var(--timing-function);
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: relative;
+  width: 528px;
+  height: 581px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1, 1);
+  transition: transform var(--duration) var(--timing-function),
+    opacity var(--duration) var(--timing-function);
+  opacity: 1;
+
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .overlay {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.1, 0.1);
+}
+
+.overlay-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.overlay-svg {
+  width: 18px;
+  height: 18px;
+}
 /* Benefits */
 
 .benefits-list {
@@ -660,7 +734,8 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.benefits-link:hover .thumb {
+.benefits-link:hover .thumb,
+.benefits-link:focus .thumb {
   transform: translateY(0);
 }
 
